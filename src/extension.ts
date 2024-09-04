@@ -12,14 +12,14 @@ export function activate(context: vscode.ExtensionContext) {
 	// Define a chat handler. 
 	const handler: vscode.ChatRequestHandler = async (request: vscode.ChatRequest, context: vscode.ChatContext, stream: vscode.ChatResponseStream, token: vscode.CancellationToken) => {
 
-		var prompt = BASE_PROMPT;
+		let prompt = BASE_PROMPT;
 
-		if(request.command === 'exercises') {
+		if (request.command === 'exercise') {
 			prompt = EXERCISES_PROMPT;
 		}
 
 		const [model] = await vscode.lm.selectChatModels(MODEL_SELECTOR);
-		if (model) {			
+		if (model) {
 			const messages = [
 				vscode.LanguageModelChatMessage.User(prompt),
 			];
@@ -53,7 +53,8 @@ export function activate(context: vscode.ExtensionContext) {
 	};
 
 	const tutor = vscode.chat.createChatParticipant("chat-sample.code-tutor", handler);
-
+	// TODO generate tutor image
+	//tutor.iconPath = vscode.Uri.joinPath(context.extensionUri, 'tutor.jpeg');
 }
 
 export function deactivate() { }

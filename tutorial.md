@@ -25,8 +25,11 @@ In the `package.json` file, replace the auto-generated `contributes` section wit
 ## Craft the Prompt and select the model
 Crafting a good prompt is the key to getting the best response from your participant. Check out this video for tips on prompt engineering (TODO link Burke's video and add high-level tips for crafting a prompt).
 
-Here's an example prompt that we could use for our code tutor:
-> You are a helpful code tutor. Your job is to teach the user with simple descriptions and sample code of the concept. Provide real-world examples of the concept to help the user understand. If the user asks a non-programming question, politely decline to respond.
+TODO update this entire section with 2 prompts, one that's basic and would just result in the same behavior as googling the answer, and one that we will actually use in the code and will result in the participant acting like an actual tutor.
+
+Consider the following two prompts. Which is more likely to give us the behavior we want?
+> You are a helpful code tutor. Your job is to teach the user with simple descriptions and sample code of the concept. If the user asks a non-programming question, politely decline to respond.
+
 
 Let's add this prompt as a `const` in our `extensions.ts` file.
 
@@ -90,6 +93,11 @@ Once the handler is implemented, the last step in the is to create the Chat Part
 const tutor = vscode.chat.createChatParticipant("chat-sample.code-tutor", handler);
 ```
 
+You can further customize your participant by adding an icon for it. 
+
+```
+tutor.iconPath = vscode.Uri.joinPath(context.extensionUri, 'tutor.jpeg');
+```
 
 The `activate` method should now look like this:
 ```
