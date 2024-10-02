@@ -9,7 +9,7 @@ const MODEL_SELECTOR: vscode.LanguageModelChatSelector = { vendor: 'copilot', fa
 
 export function activate(context: vscode.ExtensionContext) {
 
-	// Define a chat handler. 
+	// define a chat handler
 	const handler: vscode.ChatRequestHandler = async (request: vscode.ChatRequest, context: vscode.ChatContext, stream: vscode.ChatResponseStream, token: vscode.CancellationToken) => {
 
 		// initialize the prompt and model
@@ -59,6 +59,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	};
 
+	// create participant
 	const tutor = vscode.chat.createChatParticipant("chat-sample.code-tutor", handler);
 
 	// add icon to participant
